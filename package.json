@@ -10,7 +10,10 @@
 		"type": "git",
 		"url": "git+https://github.com/kingjinho/TripleCloneServer.git"
 	},
-	"keywords": [ "tripleClone", "server" ],
+	"keywords": [
+		"tripleClone",
+		"server"
+	],
 	"author": "King JinHo",
 	"license": "MIT",
 	"bugs": {
