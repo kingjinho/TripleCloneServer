@@ -4,7 +4,10 @@
 	"description": "backend for tripleClone",
 	"main": "index.js",
 	"scripts": {
-		"test": "test"
+		"test": "test",
+		"dev": "nodemon src/server.ts",
+		"start": "node dist/src/server.js",
+		"watch": "tsc -w"
 	},
 	"repository": {
 		"type": "git",
@@ -30,6 +33,7 @@
 		"@types/node-schedule": "^1.2.4",
 		"nodemon": "^1.19.2",
 		"ts-node": "^8.4.1",
+		"tslint": "^5.20.0",
 		"typescript": "^3.6.3"
 	}
 }
