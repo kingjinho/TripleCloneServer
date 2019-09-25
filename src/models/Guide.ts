@@ -1,7 +1,7 @@
 import GuideSections from './GuideSection';
 
 export default class Guide {
-	sections?: Array<GuideSections>;
+	List?: Array<GuideSections>;
 
 	constructor() {}
 }

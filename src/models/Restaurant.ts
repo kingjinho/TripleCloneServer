@@ -1,9 +1,10 @@
 export default class Restaurant {
 	type?: string;
 	title?: string;
-	description?: string;
+	subtitle?: string;
 	cntSaved?: number;
 	ratings?: number;
-	context?: string;
-	image?: Array<string>;
+	content?: string;
+	location?: string;
+	images?: Array<string>;
 }

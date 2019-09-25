@@ -1,10 +1,11 @@
 export default class GuideSections {
 	sectionName?: string;
-	item?: Array<{
+	items?: Array<{
 		title: string;
 		subtitle: string;
 		content: string;
-		image: Array<string>;
+		cntSaved: number;
+		images: Array<string>;
 	}>;
 
 	constructor() {}

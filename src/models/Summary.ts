@@ -1,5 +1,4 @@
 export default class Summary {
-	weather?: Array<number>;
 	exchangeRate?: number;
 	timeDifference?: number;
 	travelTime?: number;

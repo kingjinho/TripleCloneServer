@@ -1,12 +1,15 @@
 //GET, POST
 import express, { Application, Request, Response, NextFunction } from 'express';
 import City from './models/City';
+import { Firestore } from '@google-cloud/firestore';
+import Hotel from './models/Hotel';
 
-const Firestore = require('@google-cloud/firestore');
+//const Firestore = require('@google-cloud/firestore');
 const db = new Firestore({
 	projectId: 'reactnativesampleserver',
 	keyFile: './ReactNativeSampleServer-b32381165a1b.json'
 });
+
 let cityRef = db.collection('City');
 const app: Application = express();
 app.set('port', process.env.PORT || 3000);
@@ -22,49 +25,24 @@ app.get('/hello', (req: Request, res: Response) => {
 app.get('/NhaTrang', (req: Request, res: Response) => {
 	let result: City = new City();
 	Promise.all([ cityRef.doc('Nha Trang').get(), cityRef.doc('Nha Trang').collection('Detail').doc('Hotel').get() ])
-		.then((values: any) => {
-			values.forEach((doc: any) => {
-				console.log(doc.data());
-				let cityData: any = doc.data();
-				if (!cityData.hasOwnProperty('List')) {
-					result.setCity(cityData.city);
-					result.setCountry(cityData.country);
-					result.setCountryCode(cityData.countryCode);
-					result.setCityCode(cityData.cityCode);
-				} else {
-					result.getDetail();
-				}
-				// if (cityData.hasOwnProperty('cityCode')) {
-				// 	console.log(cityData.hasOwnProperty('cityCode'));
-				// 	console.log(num);
-				// 	num++;
-				// 	cityData.cityCode.forEach((code: any) => result.cityCode.push(code));
-				// }
-				// if (cityData.hasOwnProperty('cityCode'))
-				// 	cityData.cityCode.forEach((cityCode: string) => result.cityCode.push(cityCode));
-				// if (cityData.city !== undefined) result.city = cityData.city;
-				// if (cityData.country !== undefined) result.country = cityData.country;
-				// if (cityData.countryCode !== undefined) result.cityCode = cityData.cityCode;
-			});
-		})
-		.catch((err: Error) => console.log(err));
-	// let data = cityRef
-	// 	.doc('Nha Trang')
-	// 	.get()
-	// 	.then((doc: any) => {
-	// 		if(!doc.exists){
-
-	// 		} else {
-
-	// 		}
-	// 		console.log(doc.data().detail)})
-	// 	.catch((err: Error) => console.log(err));
-	// let detail = cityRef.doc('Nha Trang').collection('Detail').doc('Hotel').get();
-	// .then((doc: any) => console.log(doc.data()))
-	// .then((snapshop: any) => {
-	// 	snapshop.forEach((doc: any) => doc.data());
-	// })
-	//.catch((err: Error) => console.log(err));
+		.then(
+			(values: any) => {
+				values.forEach((doc: any) => {
+					let cityData: any = doc.data();
+					if (!cityData.hasOwnProperty('List')) {
+						result.setCity(cityData.city);
+						result.setCountry(cityData.country);
+						result.setCountryCode(cityData.countryCode);
+						result.setCityCode(cityData.cityCode);
+					} else {
+						cityData.List.forEach((element: Hotel) => result.getDetail().getHotel().push(element));
+					}
+				});
+				res.status(200).json(result).send();
+			},
+			() => res.status(999).json({ error: 'somethign has happened, try again' }).send()
+		)
+		.catch((err: Error) => res.status(100).json(err).send());
 });
 app.get('/NewYork', (req: Request, res: Response) => {
 	let data: any = cityRef
