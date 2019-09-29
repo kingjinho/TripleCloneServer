@@ -1,11 +1,11 @@
 export default class Tour {
 	type?: string;
 	title?: string;
-	description?: string;
+	subtitle?: string;
 	cntSaved?: number;
 	ratings?: number;
 	content?: string;
-	image?: Array<string>;
+	images?: Array<string>;
 
 	constructor() {}
 }
