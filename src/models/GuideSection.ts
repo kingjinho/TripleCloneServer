@@ -1,9 +1,12 @@
-export default interface GuideSections {
-	sectionName: string;
-	item: Array<{
+export default class GuideSections {
+	sectionName?: string;
+	items?: Array<{
 		title: string;
 		subtitle: string;
 		content: string;
-		image: Array<string>;
+		cntSaved: number;
+		images: Array<string>;
 	}>;
-};
+
+	constructor() {}
+}
