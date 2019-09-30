@@ -2,3 +2,4 @@
 /dist
 /sample.json
 /ReactNative*
+/src/util/connection*

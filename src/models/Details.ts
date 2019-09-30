@@ -45,4 +45,28 @@ export default class Details {
 	getExternalLink() {
 		return this.externalLink;
 	}
+
+	setSummary(summary: Summary) {
+		this.summary = summary;
+	}
+
+	setGuide(guide: Guide) {
+		this.guide = guide;
+	}
+
+	setHotel(hotel: Array<Hotel>) {
+		this.hotel = hotel;
+	}
+
+	setTour(tour: Array<Tour>) {
+		this.tour = tour;
+	}
+
+	setRestaurant(restaurant: Array<Restaurant>) {
+		this.restaurant = restaurant;
+	}
+
+	setExternalLink(externalLink: Array<Link>) {
+		this.externalLink = externalLink;
+	}
 }
